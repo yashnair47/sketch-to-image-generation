@@ -1,0 +1,17 @@
+albumentations==2.0.8
+clip==0.2.0
+diffusers==0.35.2
+gradio==6.0.0
+kaggle==1.8.0
+lpips==0.1.4
+matplotlib==3.10.7
+numpy==2.3.5
+pandas==2.3.3
+Pillow==12.0.0
+protobuf==6.33.1
+skimage==0.0
+torch==2.9.1
+torchmetrics==1.8.2
+torchsummary==1.5.1
+torchvision==0.24.1
+tqdm==4.67.1
