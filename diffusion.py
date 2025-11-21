@@ -23,8 +23,8 @@ if not os.path.exists(extract_dir):
 print("✅ Extracted to:", extract_dir)
 print("Subfolders:", os.listdir(extract_dir))
 
-!pip install -q --upgrade pip
-!pip install -q "huggingface_hub==0.25.2" "diffusers==0.28.0" transformers accelerate albumentations kornia einops
+# !pip install -q --upgrade pip
+# !pip install -q "huggingface_hub==0.25.2" "diffusers==0.28.0" transformers accelerate albumentations kornia einops
 
 import os
 import math
@@ -716,8 +716,8 @@ with torch.no_grad():
 
 print("\n🎉 Done! All 5 predicted images saved.")
 
-!pip install lpips
-!pip install scikit-image
+# !pip install lpips
+# !pip install scikit-image
 
 import torch
 import os

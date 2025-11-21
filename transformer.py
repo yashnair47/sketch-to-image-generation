@@ -19,18 +19,42 @@ import os
 print("📁 Please upload your kaggle.json file (from https://www.kaggle.com > Account > Create API Token)")
 files.upload()
 
-# Move kaggle.json to the correct location
-!mkdir -p ~/.kaggle
-!mv kaggle.json ~/.kaggle/kaggle.json
-!chmod 600 ~/.kaggle/kaggle.json
+import shutil
+import stat
+from kaggle.api.kaggle_api_extended import KaggleApi
 
-# Test Kaggle setup
-!kaggle datasets list | head -n 5
+# ---------------------------
+# Step 1: Move kaggle.json to ~/.kaggle
+# ---------------------------
+
+# Path where you downloaded kaggle.json
+kaggle_json_path = r"C:\Users\Admin\Downloads\kaggle.json"  # <-- change to your actual path
+
+# Destination folder (~/.kaggle)
+kaggle_dir = os.path.expanduser("~/.kaggle")
+os.makedirs(kaggle_dir, exist_ok=True)
+
+# Copy the kaggle.json file
+shutil.copy(kaggle_json_path, os.path.join(kaggle_dir, "kaggle.json"))
+
+# Set permissions (read/write for user only)
+os.chmod(os.path.join(kaggle_dir, "kaggle.json"), stat.S_IRUSR | stat.S_IWUSR)
 
 # ============================================================
 # 2. Download dataset from Kaggle
 # ============================================================
-!kaggle datasets download -d almightyj/person-face-sketches
+
+from kaggle.api.kaggle_api_extended import KaggleApi
+
+api = KaggleApi()
+api.authenticate()
+
+# Choose where to download the dataset
+download_path = r"C:\Users\Admin\Downloads\Skethc-to-real-images-using-genai-mode-main\Skethc-to-real-images-using-genai-mode-main"  # change as needed
+os.makedirs(download_path, exist_ok=True)
+
+# Download dataset (zip file)
+api.dataset_download_files("almightyj/person-face-sketches", path=download_path, unzip=True)
 
 # ============================================================
 # 3. Extract the dataset
@@ -65,12 +89,12 @@ for split in ['train', 'test', 'val']:
 
 print("\n✅ All done!")
 
-!pip install torch torchvision tqdm Pillow matplotlib
+# !pip install torch torchvision tqdm Pillow matplotlib
 
 import torch
 torch.cuda.is_available(), torch.cuda.get_device_name(0)
 
-!pip install torch torchvision matplotlib scikit-image tqdm
+# !pip install torch torchvision matplotlib scikit-image tqdm
 
 import torch
 import torch.nn as nn
@@ -184,7 +208,7 @@ class ViTRegressor(nn.Module):
         out = self.fc_dec(z)
         return out.view(-1, 3, 128, 128)
 
-!pip install torchmetrics
+# !pip install torchmetrics
 
 # =============================
 # FAST Training Loop with AMP + Optimized Metrics + Drive Save

@@ -28,7 +28,7 @@ if not os.path.exists(extract_dir):
 print("✅ Extracted to:", extract_dir)
 print("Subfolders:", os.listdir(extract_dir))
 
-!pip install -q gradio pillow
+# !pip install -q gradio pillow
 
 import gradio as gr
 from PIL import Image, ImageEnhance, ImageFilter
@@ -288,7 +288,7 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
 
 demo.launch(share=True)
 
-!pip install -q gradio pillow
+# !pip install -q gradio pillow
 
 import gradio as gr
 from PIL import Image, ImageEnhance, ImageFilter
@@ -540,7 +540,7 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
 
 demo.launch(share=True)
 
-!pip install -q gradio pillow pandas matplotlib
+# !pip install -q gradio pillow pandas matplotlib
 
 import gradio as gr
 from PIL import Image, ImageEnhance, ImageFilter
@@ -1373,7 +1373,7 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
 
 demo.launch(share=True)
 
-!pip install -q gradio pillow pandas matplotlib
+# !pip install -q gradio pillow pandas matplotlib
 
 import gradio as gr
 from PIL import Image, ImageEnhance, ImageFilter
@@ -2225,7 +2225,7 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
 
 demo.launch(share=True)
 
-!pip install -q gradio pillow pandas matplotlib
+# !pip install -q gradio pillow pandas matplotlib
 
 import gradio as gr
 from PIL import Image, ImageEnhance, ImageFilter
@@ -3132,7 +3132,7 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
 
 demo.launch(share=True)
 
-!pip install -q gradio pillow pandas matplotlib
+# !pip install -q gradio pillow pandas matplotlib
 
 import gradio as gr
 from PIL import Image, ImageEnhance, ImageFilter

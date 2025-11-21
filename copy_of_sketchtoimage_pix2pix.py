@@ -12,24 +12,42 @@ Original file is located at
 # ============================================================
 from google.colab import files
 import os
+import stat
+import shutil
 
 print("📁 Please upload your kaggle.json file (from https://www.kaggle.com > Account > Create API Token)")
 files.upload()
 
-# Move kaggle.json to correct location
-!mkdir -p ~/.kaggle
-!mv kaggle.json ~/.kaggle/kaggle.json
-!chmod 600 ~/.kaggle/kaggle.json
+# Path to your kaggle.json file
+kaggle_json_path = r"C:\Users\Admin\Downloads\Skethc-to-real-images-using-genai-mode-main\Skethc-to-real-images-using-genai-mode-main\kaggle.json"  # replace with your actual path
 
-# Test Kaggle setup
-!kaggle datasets list | head -n 5
+# Destination folder
+kaggle_dir = os.path.expanduser("~/.kaggle")
+os.makedirs(kaggle_dir, exist_ok=True)
 
+# Copy kaggle.json to the folder
+shutil.copy(kaggle_json_path, os.path.join(kaggle_dir, "kaggle.json"))
+
+# Set file permissions (read/write for user only)
+os.chmod(os.path.join(kaggle_dir, "kaggle.json"), stat.S_IRUSR | stat.S_IWUSR)
 
 # ============================================================
 # 2. Download dataset from Kaggle
 # ============================================================
-!kaggle datasets download -d almightyj/person-face-sketches
 
+from kaggle.api.kaggle_api_extended import KaggleApi
+
+api = KaggleApi()
+api.authenticate()
+
+import os
+
+# Choose where to download the dataset
+download_path = r"C:\Users\Admin\Downloads\Skethc-to-real-images-using-genai-mode-main\Skethc-to-real-images-using-genai-mode-main"  # change as needed
+os.makedirs(download_path, exist_ok=True)
+
+# Download dataset (zip file)
+api.dataset_download_files("almightyj/person-face-sketches", path=download_path, unzip=True)
 
 # ============================================================
 # 3. Extract the dataset
@@ -411,7 +429,7 @@ for epoch in range(epochs):
 from google.colab import drive
 drive.mount('/content/drive')
 
-!pip install torchmetrics
+# !pip install torchmetrics
 
 # ============================================================
 # 7. Show results after training

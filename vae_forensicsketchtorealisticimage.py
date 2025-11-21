@@ -10,9 +10,9 @@ Install packages
 """
 
 # Run in a Colab cell
-!pip install -q torch torchvision torchaudio
-!pip install -q pillow matplotlib scikit-image tqdm lpips pytorch-fid
-!pip install -q git+https://github.com/openai/CLIP.git
+# !pip install -q torch torchvision torchaudio
+# !pip install -q pillow matplotlib scikit-image tqdm lpips pytorch-fid
+# !pip install -q git+https://github.com/openai/CLIP.git
 
 """Imports & device"""
 
@@ -613,8 +613,18 @@ model = train_vae(
     resume_ckpt=resume_ckpt
 )
 
-!ls -lh "/content/drive/MyDrive/vae_sketch2real_checkpoints"
+# !ls -lh "/content/drive/MyDrive/vae_sketch2real_checkpoints"
+# Replace with your local folder path where your checkpoints are stored
+folder_path = r"C:\Users\Admin\Downloads\Skethc-to-real-images-using-genai-mode-main\Skethc-to-real-images-using-genai-mode-main\vae_sketch2real_checkpoints"
 
+# List all files and their sizes (like ls -lh)
+for filename in os.listdir(folder_path):
+    filepath = os.path.join(folder_path, filename)
+    if os.path.isfile(filepath):
+        size_bytes = os.path.getsize(filepath)
+        size_mb = size_bytes / (1024 * 1024)
+        print(f"{filename}\t{size_mb:.2f} MB")
+        
 def find_resume_checkpoint(save_dir):
     autosave = os.path.join(save_dir, "autosave_latest.pth")
     if os.path.exists(autosave):
